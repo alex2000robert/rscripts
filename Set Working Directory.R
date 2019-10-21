@@ -1,5 +1,7 @@
 # Script for finding the working directory of the current project, by using the name of the R script file. 
-# Very useful if you constantly need to move a project between computers.
+# Very useful if you constantly need to move a project between computers, assuming it has the same structure in all your
+# computers (ie. zip file that you compress and decompress on the destination computer).
+# 
 #    Copyright (C) 2019 Alexandru Robert Lazar
 
 #    This program is free software: you can redistribute it and/or modify
@@ -16,11 +18,15 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-# REQUIRED: Set your script's file name in the line "filename". The rest will be done automatically.
+# REQUIRED: Set your script's file name in the line "filename". The rest will be done nearly automatically.
 filename = "filename.R"
 filepath = file.choose()  # Opens the file explorer, where you will need to choose the file you set before in "filename".
 dir = substr(filepath, 1, nchar(filepath)-nchar(filename))
-dirnew <- c(dir, "Data_Labs_R")
+# If you are going to use a subdirectory: Put it in the commented line below and uncomment it.
+# If you use more subdirectories, put their names like this:
+# "subdirectory1\\subdirectory2\\subdirectory3\\... [this goes on until you reach the subdirectory you wish]"
+# Otherwise, if your files are in the same directory as your R script, leave this line commented and ignore the previous steps.
+#dirnew <- c(dir, "PutDirectoryNamesHere")
 dirfinal <- paste(dirnew,sep="",collapse="")
 setwd(dirfinal)
 
